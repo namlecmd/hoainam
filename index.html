@@ -1,37 +1,20 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HoaiNam!</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #ffe4e1;
-            color: #8069ff;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            font-size: 3em;
-            margin-top: 20px;
-            text-shadow: 2px 2px 5px #8069ff;
-        }
-        img {
-            width: 400px;
-            height: auto;
-            border: 5px solid #8069f4;
-            border-radius: 10px;
-            margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-    </style>
+    <title>Dự đoán Ung Thư Da</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1> HoaiNam </h1>
-    <img src="{{ image_url }}" alt="hihi" style="max-width: 100%; height: auto;">
-
-    <p>Chúc bạn một ngày mới như con Cặc 🥳</p>
+    <div class="container">
+        <h1>Dự đoán Ung Thư Da</h1>
+        <form id="upload-form" enctype="multipart/form-data">
+            <input type="file" id="image-input" accept="image/*" required>
+            <button type="submit">Tải lên và Dự đoán</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
