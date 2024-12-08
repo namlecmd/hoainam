@@ -3,18 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dự đoán Ung Thư Da</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Skin Cancer Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Dự đoán Ung Thư Da</h1>
+        <h1 class="mt-5">Skin Cancer Prediction</h1>
         <form id="upload-form" enctype="multipart/form-data">
-            <input type="file" id="image-input" accept="image/*" required>
-            <button type="submit">Tải lên và Dự đoán</button>
+            <div class="form-group">
+                <label for="file">Upload an image of the skin:</label>
+                <input type="file" class="form-control-file" id="file" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict</button>
         </form>
-        <div id="result"></div>
+        <div id="result" class="mt-4"></div>
     </div>
-    <script src="script.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#upload-form').on('submit', function (e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: 'YOUR_API_URL/predict',  // Thay thế YOUR_API_URL bằng URL của API bạn đã triển khai
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        $('#result').html('<h3>Prediction: ' + data.class + '</h3><p>Confidence: ' + data.confidence.toFixed(2) + '</p>');
+                    },
+                    error: function (error) {
+                        $('#result').html('<h3>Error</h3><p>' + error.responseJSON.error + '</p>');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
